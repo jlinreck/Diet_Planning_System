@@ -14,7 +14,6 @@ class Food:
         self.carbs = carbs                # grams per serving
         self.fats = fats                  # grams per serving
         self.serving_unit = serving_unit  # g, ml, oz, etc.
-        self.tags = tags or []            # list of tags (vegan, gluten-free, etc.)
     
     def to_dict(self):
         """Convert food object to dictionary"""
@@ -28,8 +27,7 @@ class Food:
             },
             "serving": {
                 "unit": self.serving_unit
-            },
-            "tags": self.tags
+            }
         }
     
     @classmethod
@@ -41,6 +39,17 @@ class Food:
             proteins=data["macros"]["proteins"],
             carbs=data["macros"]["carbs"],
             fats=data["macros"]["fats"],
-            serving_unit=data["serving"]["unit"],
-            tags=data.get("tags")
+            serving_unit=data["serving"]["unit"]
         )
+    
+    def get_calories(self):
+        return self.calories
+    
+    def get_protiens(self):
+        return self.proteins
+    
+    def get_carbs(self):
+        return self.carbs
+    
+    def get_fats(self):
+        return self.fats
